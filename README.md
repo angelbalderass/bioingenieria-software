@@ -9,7 +9,8 @@ Proyectos de software de **Angel Balderas Serrano** (Bioingeniería Médica, UAE
 | [agenda-terapeuta-api](agenda-terapeuta-api/) | API REST para apartar y gestionar citas de un terapeuta particular, con estados y agenda actual. | FastAPI, Pydantic, SQLite |
 | [sistema-mantenimiento-ceree](sistema-mantenimiento-ceree/) | App de escritorio para órdenes de servicio, inventario, semáforo de estados e historial del CEREE. | Python, CustomTkinter, Firebase Firestore, FPDF |
 | [sistema-mantenimiento-hgo](sistema-mantenimiento-hgo/) | App de escritorio del Depto. de Bioingeniería del Hospital de Ginecología y Obstetricia: órdenes de servicio, alertas push reales (FCM), semáforo con dashboard, calendario de mantenimiento preventivo y reportes PDF. | Python, CustomTkinter, Firebase Firestore, FCM, Matplotlib, FPDF |
-| [demo-agente-atencion-cliente](demo-agente-atencion-cliente/) | Demo (sin dependencias) de un agente de triaje para atención al cliente: clasifica la intención, decide responder / pedir datos / escalar a humano, con guardarraíles y evals sobre 12 casos sintéticos. | Python estándar (sin dependencias); LLM opcional por variables de entorno |
+| [equianza](equianza/) | App web para clínica dental: agenda por consultorio, pacientes, dentistas, recordatorios por WhatsApp, avisos al celular y reportes. | JavaScript, Firebase (Auth, Firestore, Hosting), PWA + Electron |
+| [la-onda-fit](la-onda-fit/) | App web para gimnasio: control de acceso, miembros con foto, pagos y asistencias. | JavaScript, Firebase (Auth, Firestore, Hosting), PWA |
 
 ## Contexto real
 

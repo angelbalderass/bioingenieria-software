@@ -1,0 +1,25 @@
+{
+  "name": "equianza-escritorio",
+  "version": "1.0.0",
+  "description": "Equianza · Clínica dental (programa para Windows)",
+  "main": "main.js",
+  "author": "Equianza",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "iniciar": "electron .",
+    "exe": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "app.equianza.clinica",
+    "productName": "Equianza",
+    "files": ["main.js", "sin-conexion.html", "config.json", "build/icon.png"],
+    "directories": { "output": "salida" },
+    "win": { "target": ["nsis"], "icon": "build/icon.png" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "perMachine": false, "createDesktopShortcut": true, "language": "3082" }
+  }
+}

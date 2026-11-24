@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Equianza · Clínica dental</title>
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Equianza, clínica dental: agenda de citas por consultorio, directorio de pacientes y dentistas, y reportes.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<!-- ENTRAR -->
+<main id="login" class="login">
+  <form id="formLogin" class="card loginbox" autocomplete="on">
+    <img src="logo.png" alt="" class="loginlogo" width="120" height="118">
+    <h1>Equianza</h1>
+    <p class="muted">Clínica dental</p>
+    <div class="field"><label for="l_user">Usuario</label><input id="l_user" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
+    <div class="field"><label for="l_pass">Contraseña</label><input id="l_pass" type="password" autocomplete="current-password" required></div>
+    <p id="l_err" class="err" role="alert"></p>
+    <button class="btn" type="submit" id="l_btn">Entrar</button>
+  </form>
+  <p id="loginMsg" class="card loginbox" role="status" hidden></p>
+</main>
+
+<!-- APP -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap topin">
+      <div class="brand">
+        <img class="logo" src="logo.png" alt="" width="44" height="43">
+        <div class="wm"><b id="clinicaNom">Equianza</b><small id="clinicaSub">Clínica dental</small></div>
+      </div>
+      <div class="row"><span class="rol" id="rolPill"></span><button class="btn sec sm" id="btnSalir" type="button">Salir</button></div>
+    </div>
+    <div class="brandbar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  </header>
+  <div class="wrap">
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Secciones"></nav>
+    <div id="aviso" class="aviso" role="status" hidden></div>
+    <main id="view"></main>
+  </div>
+</div>
+
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-bg" id="sheetBg"></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head"><h2 id="sheetTitle"></h2><button class="btn sec sm" id="sheetClose" type="button">Cerrar</button></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div id="toast" class="toast" role="status" hidden><span></span></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

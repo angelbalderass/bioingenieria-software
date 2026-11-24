@@ -1,0 +1,8 @@
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><title>Equianza</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:16px/1.5 "Segoe UI",system-ui,sans-serif;background:#f7f5f0;color:#25363a}
+main{max-width:460px;padding:32px;text-align:center}h1{font:600 28px Georgia,serif;margin:0 0 8px;color:#3f6f76}button{margin-top:16px;padding:10px 18px;border:0;border-radius:8px;background:#3f6f76;color:#fff;font:600 15px inherit;cursor:pointer}</style></head>
+<body><main><h1>Equianza</h1>
+<p id="m1">No hay conexión a internet. Revisa tu red y vuelve a intentar.</p>
+<p id="m2" hidden>Falta indicar la dirección de la página. Abre el archivo <b>config.json</b> y cambia <b>TU-PROYECTO</b> por el nombre de tu proyecto de Firebase (ejemplo: https://equianza-1234.web.app). Después vuelve a generar el programa.</p>
+<button onclick="window.close()">Cerrar</button></main>
+<script>if(new URLSearchParams(location.search).get('falta')==='1'){m1.hidden=true;m2.hidden=false}</script></body></html>

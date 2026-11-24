@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function perfil() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
+    function activo() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && perfil().activo == true;
+    }
+    function esAdmin() { return activo() && perfil().rol == 'admin'; }
+    function esStaff() { return activo() && perfil().rol in ['admin', 'recepcion']; }
+
+    match /usuarios/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || esAdmin());
+      allow write: if esAdmin();
+    }
+    match /miembros/{id} {
+      allow read: if esStaff();
+      allow write: if esAdmin();
+    }
+    match /pagos/{id} {
+      allow read, write: if esAdmin();
+    }
+    match /config/{id} {
+      allow read: if esStaff();
+      allow write: if esAdmin();
+    }
+    // Recepción solo puede AGREGAR entradas (no borrar ni cambiar las existentes).
+    match /asistencias/{dia} {
+      allow read: if esStaff();
+      allow create: if esStaff() && request.resource.data.keys().hasOnly(['fecha','entradas','ejemplo']);
+      allow update: if esStaff()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['entradas'])
+        && request.resource.data.entradas.diff(resource.data.entradas).removedKeys().size() == 0
+        && request.resource.data.entradas.diff(resource.data.entradas).changedKeys().size() == 0;
+      allow delete: if esAdmin();
+    }
+  }
+}

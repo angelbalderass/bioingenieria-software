@@ -15,3 +15,5 @@ Orden_*.pdf
 Orden_IMIEM_*.pdf
 Ruta_*.pdf
 .DS_Store
+**/firebase-config.js
+.firebaserc

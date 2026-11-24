@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---- Quién es quien pregunta (se lee de /usuarios/{uid}, que solo el administrador puede escribir) ----
+    function perfil() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data; }
+    function activo() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && perfil().activo == true;
+    }
+    function esAdmin()    { return activo() && perfil().rol == 'admin'; }
+    function esStaff()    { return activo() && perfil().rol in ['admin', 'recepcion']; }
+    function esDentista() { return activo() && perfil().rol == 'dentista'; }
+    function miDentista() { return perfil().get('dentistaId', ''); }
+    function esMio(dentistaId) { return esDentista() && miDentista() != '' && dentistaId == miDentista(); }
+
+    // ---- Usuarios: cada quien lee el suyo; solo el administrador crea, cambia o desactiva ----
+    match /usuarios/{uid} {
+      allow read: if request.auth != null && (request.auth.uid == uid || esAdmin());
+      allow write: if esAdmin();
+    }
+
+    // ---- Dentistas (directorio): personal ve todos; el dentista solo su ficha ----
+    match /dentistas/{id} {
+      allow read: if esStaff() || esMio(id);
+      allow write: if esAdmin();
+    }
+
+    // ---- Consultorios: personal ve todos; el dentista solo los suyos ----
+    match /consultorios/{id} {
+      allow read: if esStaff() || esMio(resource.data.dentistaId);
+      allow write: if esAdmin();
+    }
+
+    // ---- Pacientes (directorio): personal y dentistas leen; recepción y administración capturan; solo administración borra ----
+    match /pacientes/{id} {
+      allow read: if esStaff() || esDentista();
+      allow create, update: if esStaff()
+        && request.resource.data.nombre is string
+        && request.resource.data.nombre.size() > 0 && request.resource.data.nombre.size() <= 120;
+      allow delete: if esAdmin();
+    }
+
+    // ---- Citas ----
+    match /citas/{id} {
+      allow read: if esStaff() || esMio(resource.data.dentistaId);
+      // Recepción y administración crean cualquier cita; el dentista solo en su propia agenda.
+      allow create: if (esStaff() || esMio(request.resource.data.dentistaId))
+        && request.resource.data.estado in ['programada', 'llego', 'en_consulta', 'atendida', 'cancelada', 'no_vino']
+        && request.resource.data.fecha is string && request.resource.data.fecha.size() == 10
+        && request.resource.data.hora is string && request.resource.data.hora.size() == 5;
+      // Recepción y administración editan; el dentista solo cambia el estado y las notas de SUS citas.
+      allow update: if esStaff()
+        || (esMio(resource.data.dentistaId)
+            && request.resource.data.dentistaId == resource.data.dentistaId
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['estado', 'notas', 'atendidaEn']));
+      allow delete: if esAdmin();
+    }
+
+    // ---- Configuración ----
+    match /config/clinica {
+      allow read: if activo();          // nombre y ciudad: cualquier usuario activo
+      allow write: if esAdmin();
+    }
+    match /config/notificaciones {
+      allow read: if esStaff();         // recepción necesita el tiempo de aviso; los dentistas no entran aquí
+      allow write: if esAdmin();
+    }
+  }
+}

@@ -1,0 +1,219 @@
+/* Equianza · colores tomados del logotipo: dorado (sol), verde azulado, salvia y rosa */
+:root{
+  --bg:#f8f6f1; --surface:#ffffff; --surface2:#f1eee6; --line:#e4dfd3;
+  --ink:#27363b; --muted:#667579;
+  --teal:#3f6a73; --teal-soft:#dfeaec; --teal-hi:#7ea3aa;
+  --sage:#8f9777; --rose:#d9a0a0; --gold:#d8a64a;
+  --ok:#2f6b46; --ok-bg:#e3f1e8;
+  --warn:#8a5a00; --warn-bg:#fff0c9;
+  --bad:#a8312c; --bad-bg:#fbe3e0;
+  --font-display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --font-body:'Figtree','Segoe UI',system-ui,sans-serif;
+  --r:14px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--font-body);
+  padding:0 max(16px,env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+h1,h2,h3,p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:6px}
+.muted{color:var(--muted)} .hint{font-size:14px;color:var(--muted)} .err{color:var(--bad);font-size:14px}
+.txt-rojo{color:var(--bad)}
+.wrap{max-width:1180px;margin:0 auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.scrollx{overflow-x:auto}
+
+/* ---------- entrar ---------- */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px 0}
+.loginbox{width:min(400px,100%);display:grid;gap:14px;text-align:center;padding:28px 24px}
+.loginbox h1{font:600 44px/1 var(--font-display);letter-spacing:.04em;color:var(--teal)}
+.loginlogo{width:110px;height:auto;margin:0 auto;display:block}
+.loginbox .field{text-align:left}
+
+/* ---------- encabezado ---------- */
+.top{background:var(--surface);margin:0 calc(-1 * max(16px,env(safe-area-inset-left))) 0 calc(-1 * max(16px,env(safe-area-inset-right)));border-bottom:1px solid var(--line)}
+.topin{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,env(safe-area-inset-left))}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.logo{width:44px;height:auto;display:block;flex:none}
+.wm b{display:block;font:600 28px/1 var(--font-display);letter-spacing:.05em;color:var(--teal)}
+.wm small{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.brandbar{display:flex;height:4px}.brandbar i{flex:1}
+.brandbar i:nth-child(1){background:var(--teal-hi)}.brandbar i:nth-child(2){background:var(--sage)}
+.brandbar i:nth-child(3){background:var(--rose)}.brandbar i:nth-child(4){background:var(--gold)}
+.rol{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);border-radius:99px;padding:4px 12px;white-space:nowrap}
+
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:14px 0 20px;padding-bottom:2px}
+.tab{appearance:none;background:none;border:1px solid transparent;border-radius:99px;color:var(--muted);font:600 15px var(--font-body);padding:9px 16px;cursor:pointer;white-space:nowrap}
+.tab:hover{background:var(--surface2)}
+.tab[aria-selected="true"]{background:var(--teal);color:#fff}
+
+/* ---------- controles ---------- */
+.btn{appearance:none;background:var(--teal);color:#fff;border:1px solid var(--teal);border-radius:10px;padding:10px 18px;font:600 15px var(--font-body);cursor:pointer;min-height:42px}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.5;cursor:default;filter:none}
+.btn.sec{background:var(--surface);color:var(--teal);border-color:var(--line)}
+.btn.sec:hover{background:var(--teal-soft);filter:none}
+.btn.red{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{padding:6px 12px;font-size:14px;min-height:34px;border-radius:8px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:0 1px 2px rgba(39,54,59,.04)}
+.card>h3,.card h3{font:600 24px/1.1 var(--font-display);margin-bottom:12px;color:var(--ink)}
+.aviso{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;margin-bottom:16px}
+.aviso.mal{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.vacio{color:var(--muted);padding:18px 4px}
+.field{display:grid;gap:5px;min-width:0}
+.field label{font-size:13px;font-weight:600;color:var(--muted)}
+input,select,textarea{background:var(--surface);border:1px solid #cfc9bb;border-radius:10px;padding:10px 12px;min-width:0;width:100%;min-height:42px}
+input[type=checkbox]{width:auto;min-height:0}
+textarea{resize:vertical;min-height:70px}
+input[readonly]{background:var(--surface2)}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fgrid .full{grid-column:1/-1}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.toolbar select,.toolbar input{width:auto}
+.pasos{margin:0 0 14px 18px;padding:0;display:grid;gap:4px}
+
+.pill{display:inline-flex;align-items:center;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.pill.verde,.pill.est-atendida,.pill.k-ocupado{background:var(--ok-bg);color:var(--ok)}
+.pill.amarillo,.pill.est-llego,.pill.k-mantenimiento{background:var(--warn-bg);color:var(--warn)}
+.pill.rojo,.pill.est-cancelada,.pill.est-no_vino{background:var(--bad-bg);color:var(--bad)}
+.pill.est-programada,.pill.k-libre{background:var(--teal-soft);color:var(--teal)}
+.pill.est-en_consulta{background:#e9e3f3;color:#5b4a86}
+.tag{font-size:11px;font-weight:600;letter-spacing:.04em;background:var(--surface2);border:1px solid var(--line);color:var(--muted);border-radius:6px;padding:1px 7px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--muted)}
+.dot.verde{background:#3e9a63}.dot.amarillo{background:#e0a000}.dot.rojo{background:var(--bad)}
+
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+
+/* ---------- tarjetas de cifras ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:18px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;border-left:5px solid var(--teal-hi)}
+.stat span{display:block;font-size:13px;color:var(--muted);font-weight:600}
+.stat b{display:block;font:600 34px/1.15 var(--font-display);margin-top:2px;font-variant-numeric:tabular-nums}
+.stat b small{font:500 15px var(--font-body);color:var(--muted)}
+.stat.rojo{border-left-color:var(--bad);background:var(--bad-bg)}.stat.rojo b{color:var(--bad)}
+.cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:18px;align-items:start}
+.alertrow{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.alertrow:last-child{border-bottom:0}
+.hh{font-variant-numeric:tabular-nums;min-width:74px}
+
+/* ---------- agenda ---------- */
+.datenav{display:flex;gap:6px;align-items:center}
+.datenav input{width:auto}
+.diatit{font:600 34px/1.1 var(--font-display);margin-bottom:2px}
+.diatit::first-letter{text-transform:uppercase}
+.chiphoy{font:700 11px var(--font-body);letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#3b2a00;border-radius:99px;padding:3px 10px;vertical-align:middle}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start}
+.col{background:var(--surface2);border-radius:var(--r);padding:12px;display:grid;gap:10px;border-top:5px solid var(--kc,var(--line))}
+.col header{padding:2px 4px 6px;border-bottom:2px solid var(--line)}
+.col header h3{font:600 24px/1.1 var(--font-display)}
+.col header p{font-size:14px;color:var(--muted)}
+.cita{background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--kc,var(--teal-hi));border-radius:12px;padding:12px;display:grid;gap:8px}
+.cita.st-llego{border-left-color:#e0a000;background:#fffaf0}
+.cita.st-en_consulta{border-left-color:#7a62b0}
+.cita.st-atendida{border-left-color:#3e9a63;opacity:.85}
+.cita.st-cancelada,.cita.st-no_vino{border-left-color:var(--bad);opacity:.7}
+.cita .hora{display:flex;align-items:baseline;gap:8px}
+.cita .hora b{font:600 22px var(--font-display);font-variant-numeric:tabular-nums}
+.cita .hora small{color:var(--muted);font-size:13px}
+.cita .cuerpo{display:grid;gap:3px;justify-items:start}
+.cita .pac{font-size:17px}.cita .sub{font-size:14px;color:var(--muted)}.cita .nota{font-style:italic}
+.cita .acc{display:flex;gap:6px;flex-wrap:wrap}
+
+/* ---------- consultorios / dentistas ---------- */
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;align-content:start;border-top:5px solid var(--sage)}
+.kcard.est-libre{border-top-color:var(--teal-hi)}.kcard.est-mantenimiento{border-top-color:var(--gold)}.kcard.est-ocupado{border-top-color:var(--sage)}
+.kcard.inactivo{opacity:.65}
+.kcard header{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+.kcard h3{font:600 24px/1.1 var(--font-display)}
+.kcard header p{font-size:14px;color:var(--muted)}
+.badge{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--teal-soft);color:var(--teal);font:700 18px var(--font-body)}
+.dent{font-size:15px}
+dl.det{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 14px;font-size:15px}
+dl.det dt{color:var(--muted)}dl.det dd{margin:0;overflow-wrap:anywhere}
+
+/* ---------- reportes ---------- */
+.segs{display:flex;height:22px;border-radius:99px;overflow:hidden;background:var(--surface2)}
+.segs i{display:block}
+.s-oc{background:var(--sage)}.s-ma{background:var(--gold)}.s-li{background:var(--teal-hi)}
+.leyenda{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px}
+.leyenda li{display:flex;gap:10px;align-items:center}
+.leyenda i{width:14px;height:14px;border-radius:4px;display:block}
+.leyenda b{margin-left:auto}
+
+/* ---------- ventana lateral y avisos ---------- */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;justify-content:flex-end}
+.sheet-bg{position:absolute;inset:0;background:rgba(30,40,44,.55)}
+.sheet-panel{position:relative;width:min(560px,100%);height:100%;overflow-y:auto;background:var(--bg);padding:max(14px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));display:grid;gap:14px;align-content:start}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sheet-head h2{font:600 30px/1.1 var(--font-display)}
+.toast{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;pointer-events:none;z-index:60;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.toast span{background:var(--ink);color:#fff;padding:11px 18px;border-radius:10px;font-weight:600;max-width:100%;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.toast span.err{background:var(--bad)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.tabs,.top .row,.toolbar,.btn,.toast{display:none!important}body{background:#fff}}
+
+/* ---------- colores de consultorio (4 colores del logotipo) ---------- */
+.k0{--kc:#7ea3aa}.k1{--kc:#8f9777}.k2{--kc:#d9a0a0}.k3{--kc:#d8a64a}
+.kdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--kc,var(--muted));flex:none}
+.chip .kdot{margin-right:8px}
+
+/* ---------- selector Día/Calendario y chips por consultorio ---------- */
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.segb{appearance:none;background:none;border:0;padding:9px 16px;font:600 15px var(--font-body);color:var(--muted);cursor:pointer;min-height:42px}
+.segb[aria-pressed="true"]{background:var(--teal);color:#fff}
+.chips{display:flex;gap:8px;margin:0 0 16px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chip{appearance:none;display:inline-flex;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font:600 14px var(--font-body);color:var(--ink);cursor:pointer;white-space:nowrap;min-height:40px}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.mesnom{font:600 22px var(--font-display);min-width:150px;text-align:center}
+.mesnom::first-letter{text-transform:uppercase}
+.datenav{flex-wrap:wrap}
+.btn-nueva{margin-left:auto}
+.fab{display:none;position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;border:0;border-radius:99px;background:var(--teal);color:#fff;font:700 16px var(--font-body);padding:15px 24px;min-height:54px;box-shadow:0 8px 24px rgba(39,54,59,.35);cursor:pointer}
+
+/* ---------- calendario del mes ---------- */
+.cal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px;margin-bottom:20px;display:grid;gap:4px}
+.cal-h,.cal-w{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal-h span{text-align:center;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:4px 0}
+.cal-d{appearance:none;position:relative;display:grid;grid-template-rows:auto 1fr;align-content:start;gap:2px;min-height:56px;padding:6px;background:var(--bg);border:1px solid transparent;border-radius:10px;text-align:left;cursor:pointer;color:var(--ink)}
+.cal-d:hover{border-color:var(--teal-hi)}
+.cal-d.fuera{opacity:.4}
+.cal-d.hoy{border-color:var(--gold);background:#fff8e6}
+.cal-d.sel{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cal-num{font:600 15px var(--font-body);font-variant-numeric:tabular-nums}
+.cal-dots{display:flex;gap:3px;flex-wrap:wrap}
+.cal-dots .kdot{width:8px;height:8px}
+.cal-d.sel .cal-dots .kdot{box-shadow:0 0 0 1.5px #fff}
+.cal-n{position:absolute;right:6px;bottom:4px;font:700 12px var(--font-body);color:var(--teal)}
+.cal-d.sel .cal-n{color:#fff}
+.cal-leyenda{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:6px 4px 0}
+.cal-leyenda span{display:inline-flex;align-items:center;gap:6px}
+
+/* ---------- resumen, pacientes, reportes ---------- */
+.mini{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--kc,var(--teal-hi));border-radius:10px;padding:8px 10px}
+.mini.st-cancelada,.mini.st-no_vino{opacity:.6}
+.plist{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:8px}
+.prow{appearance:none;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;min-height:60px;cursor:pointer}
+.prow:hover{border-color:var(--teal-hi)}
+.pnom b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pnom .sub{font-size:14px;color:var(--muted)}
+.chk{display:flex;gap:10px;align-items:center;font-size:15px}
+.hbar{display:grid;grid-template-columns:minmax(90px,130px) 1fr auto;gap:10px;align-items:center;margin:10px 0}
+.hb{background:var(--surface2);border-radius:99px;height:16px;overflow:hidden}
+.hb i{display:block;height:100%;background:var(--kc,var(--teal-hi));border-radius:99px}
+
+@media(max-width:700px){
+  .fab{display:block}.btn-nueva{display:none}
+  .toolbar{gap:8px}
+  .diatit{font-size:28px}
+  .cal{padding:6px}.cal-d{min-height:52px;padding:4px 5px}.cal-n{right:4px}
+  .sheet-panel{width:100%}
+}
