@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite3
+llave.json
+llave_hgo.json
+*.pem
+.env
+venv/
+.venv/
+dist/
+build/
+*.egg-info/
+Orden_*.pdf
+Orden_IMIEM_*.pdf
+Ruta_*.pdf
+.DS_Store

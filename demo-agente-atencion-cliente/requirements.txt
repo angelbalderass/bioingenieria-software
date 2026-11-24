@@ -1,0 +1,2 @@
+# Demo sin dependencias externas: solo Python 3.10+ de la librería estándar.
+# (Sin fastapi, sin SDK de LLM: el agente corre con `python3 agent.py`.)
